@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- 练习 -->
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="world" namespace="/world" extends="struts-base">
+		<action name="*" method="{1}" class="com.jinmao.web.world.WorldAction">
+			<result name="success">/WEB-INF/vm/world/{1}.vm</result>
+			<result name="add">/WEB-INF/vm/world/add.vm</result>
+		</action>
+	</package>
+</struts>

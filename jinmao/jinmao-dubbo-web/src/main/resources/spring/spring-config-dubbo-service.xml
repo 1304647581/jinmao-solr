@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	default-autowire="byName">
+	
+	<dubbo:application name="jinmao-dubbo-web" />
+	<dubbo:registry address="N/A" /> 
+
+	<!-- 账户信息-【手机app调用】 -->	
+	<!-- <dubbo:protocol id="accountRest" name="rest" port="5032" /> -->
+	<!-- ref:要注入的Service实现 -->
+	<!-- <dubbo:service interface="com.jinmao.api.world.WorldApi" 
+					ref="accountApi" version="1.0" group="group-account"
+					protocol="accountRest" filter="loginInterceptor" timeout="60000" /> -->
+	
+	<!-- 用户-【其他系统调用】-->
+	<!-- <dubbo:protocol id="serializeRpc" name="dubbo" port="6066" /> -->
+	<!-- ref:要注入的Service实现 -->
+	<!-- <dubbo:service interface="com.jinmao.api.world.WorldApi" 
+					ref="serializeApi" version="1.0" group="erp-serialize"
+					protocol="serializeRpc" timeout="60000" /> -->
+</beans>

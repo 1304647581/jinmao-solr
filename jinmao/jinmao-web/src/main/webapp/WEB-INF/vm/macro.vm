@@ -1,0 +1,131 @@
+#macro (showPage $module $page)
+    #if($page)
+		<div class="span12"><div class="dataTables_info" id="DataTables_Table_0_info">共有 $!page.totalItem 条记录 $!page.index/$!{page.totalPage}页</div></div>
+		<div class="span12 center">
+		<div class="dataTables_paginate paging_bootstrap pagination">
+		<ul>
+			 <li class="disabled"><a href="javascript:void(0);">每页显示</a></li>
+			 <li class="s-page">
+    			<select id="selSize" style="width:auto;height:33px;display:block;float:left;" onchange="goToSize('$module.addQueryData("kw","").render()','1',this.value)">
+					#foreach($i in [10,20,30,40,50])
+						#if($!{page.pageSize}==$i)
+							<option value="$!i" selected="selected">$!i</option>
+						#else
+							<option value="$!i" >$!i</option>
+						#end
+					#end
+				</select>
+    		 </li>
+			 <li class="disabled"><a href="javascript:void(0);">行</a></li>
+        #set($pagePos = 2) ##当前页的尾巴长度
+        #if($page.previousPageAvailable) ##如果能向上翻页
+        <li><a href="javascript:goToSize('$module.render()','$!{page.previousPage}',$!{page.pageSize})">上一页<b></b></a></li>
+        <li><a href="javascript:goToSize('$module.render()','1',$!{page.pageSize})">首页</a></li>
+        #else
+           <li class="disabled"><a href="#">上一页<b></b></a></li>
+           <li class="disabled"><a href="#">首页</a></li>
+        #end
+        #foreach($i in [$pagePos..1]) ##增加前面的尾巴
+        #if($!page.index - $i > 0)
+            #set($pageIndex= $!page.index - $i)
+            <li><a href="javascript:goToSize('$module.render()',$!{pageIndex},$!{page.pageSize})">$pageIndex</a></li>
+        #end
+        #end
+        <li class="active"><a>$!page.index</a></li>
+        ##显示当前页号
+        #foreach($i in [1..$pagePos]) ##增加后面的尾巴
+        #if($!page.totalPage - $!page.index - $i >= 0)
+            #set($pageIndex= $!page.index + $!i)
+           <li><a href="javascript:goToSize('$module.render()',$!{pageIndex},$!{page.pageSize})">$pageIndex</a></li>
+        #end
+        #end
+        #if($page.nextPageAvailable) ##显示后面的页
+        <li><a href="javascript:goToSize('$module.render()','$!{page.totalPage}','$!{page.pageSize}')">末页</a></li>
+        <li><a href="javascript:goToSize('$module.render()','$!{page.nextPage}',$!{page.pageSize})">下一页<b></b></a></li>
+        #else
+            <li class="disabled"><a href="#">末页</a></li>
+            <li class="disabled"><a href="#">下一页<b></b></a></li>
+		#end
+         <li class="s-page">跳转到</li>
+		 <li class="s-page">
+			<select id="selPage" style="width:auto;height:33px;display:block;float:left;" onchange="goToPage('$module.render()',this.value,$!{page.pageSize})">
+			#foreach($i in [1..$!page.totalPage])
+				#if($!page.index == $!i)
+    			<option value="$!i" selected ="selected">$!i</option>
+				#else
+    			<option value="$!i">$!i</option>
+				#end
+    		#end
+			</select>
+		 </li>
+        </ul>
+		</div>
+		</div>
+        $!module.reset() 
+    #end
+#end
+
+#macro (showAjaxPage $module $page)
+    #if($page)
+		<div class="form-group col-sm-3 pull-left" style="margin-top:27px"><div  class="col-sm-12">
+        <div class="dataTables_info" id="datatable2_info">共有 $!page.totalItem 条记录 $!page.index/$!{page.totalPage}页</div></div></div>	
+		
+		<div class="form-group col-sm-9 pull-right">
+		<div class="col-sm-12" style="text-align:right">
+		<div class="dataTables_paginate paging_bs_full">
+		<ul class="pagination">
+			 <li class="disabled"><a href="javascript:void(0);">每页显示</a></li>
+			 <li >
+    			<select id="selSize" style="width:auto;height:33px;display:block;float:left;" onchange="goSize('$module.addQueryData("kw","").render()','1',this.value)">
+					#foreach($i in [10,20,30,40,50])
+						#if($!{page.pageSize}==$i)
+							<option value="$!i" selected="selected">$!i</option>
+						#else
+							<option value="$!i" >$!i</option>
+						#end
+					#end
+				</select>
+				
+    		 </li>
+			 <li class="disabled"><a href="javascript:void(0);">行</a></li>
+        #set($pagePos = 2) ##当前页的尾巴长度
+        #if($page.previousPageAvailable) ##如果能向上翻页
+        <li><a href="javascript:void(0);" onclick="goSize('$module.render()','$!{page.previousPage}',$!{page.pageSize})">上一页<b></b></a></li>
+        <li><a href="javascript:void(0);" onclick="goSize('$module.render()','1',$!{page.pageSize})">首页</a></li>
+        #else
+           <li class="disabled"><a href="javascript:void(0);">上一页<b></b></a></li>
+           <li class="disabled"><a href="javascript:void(0);">首页</a></li>
+        #end
+        #foreach($i in [$pagePos..1]) ##增加前面的尾巴
+        #if($!page.index - $i > 0)
+            #set($pageIndex= $!page.index - $i)
+            <li><a href="javascript:void(0);" onclick="goSize('$module.render()',$!{pageIndex},$!{page.pageSize})">$pageIndex</a></li>
+        #end
+        #end
+        <li class="active"><a >$!page.index</a></li>
+        ##显示当前页号
+        #foreach($i in [1..$pagePos]) ##增加后面的尾巴
+        #if($!page.totalPage - $!page.index - $i >= 0)
+            #set($pageIndex= $!page.index + $!i)
+           <li><a href="javascript:void(0);" onclick="goSize('$module.render()',$!{pageIndex},$!{page.pageSize})">$pageIndex</a></li>
+        #end
+        #end
+        #if($page.nextPageAvailable) ##显示后面的页
+        <li><a href="javascript:void(0);" onclick="goSize('$module.render()','$!{page.totalPage}','$!{page.pageSize}')">末页</a></li>
+        <li><a href="javascript:void(0);" onclick="goSize('$module.render()','$!{page.nextPage}',$!{page.pageSize})">下一页<b></b></a></li>
+        #else
+            <li class="disabled"><a href="javascript:void(0);">末页</a></li>
+            <li class="disabled"><a href="javascript:void(0);">下一页<b></b></a></li>
+		#end
+		 <li class="disabled"><a href="javascript:void(0);">跳转到</a></li>
+		 <li >
+			<input id="selPage" type="text" style="width:34px;height:33px;"  value="$!{page.index}" onblur="goPage('$module.render()',this.value,$!{page.pageSize},$!page.totalPage)"/>页
+		 </li>
+        </ul>
+		</div>
+		</div>
+		</div>
+		</div>
+        $!module.reset() 
+    #end
+#end

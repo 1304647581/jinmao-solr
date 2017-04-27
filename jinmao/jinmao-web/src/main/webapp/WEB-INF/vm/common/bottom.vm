@@ -1,0 +1,5 @@
+<!-- bottom底部 -->
+<!-- canvas --start-->
+<script type="text/javascript" color="255,0,0" opacity="0.5" count="99" src="$jsModule.getTarget('')/style/js/common/canvas/canvas-nest.min.js"></script>
+<script type="text/javascript" alpha="0.2" src="$jsModule.getTarget('')/style/js/common/canvas/ribbon.min.js"></script>
+<!-- canvas --end-->

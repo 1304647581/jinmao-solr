@@ -1,0 +1,5 @@
+#parse("/WEB-INF/vm/common/head.vm")
+#parse("/WEB-INF/vm/common/left.vm")
+#parse("/WEB-INF/vm/common/announcement.vm")
+$screen_content
+#parse("/WEB-INF/vm/common/bottom.vm")
