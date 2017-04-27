@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+	<!-- solr配置 -->
+	<bean id="solrClient" class="com.jinmao.solr.common.factory.SolrClientFactoryBean">
+		<!--写服务连接(master)-->
+		<!-- <property name="URLWriter" value="http://58.30.228.197:8083/solr" /> -->
+		<property name="URLWriter" value="http://192.168.30.244:8083/solr" />
+		<!--读服务连接(slave)-->
+		<property name="URLReader" value="http://192.168.30.244:8083/solr" />
+		<!--socket读取超时时间-->
+		<property name="soTimeOut" value="10000" />
+		<!--连接超时时间-->
+		<property name="connectionTimeOut" value="10000" />
+		<!--每个主机默认最大连接数-->
+		<property name="defaultMaxConnectionsPerHost" value="5000" />
+		<!--最大连接数-->
+		<property name="maxTotalConnections" value="5000" />
+		<!--是否重定向，默认false-->
+		<property name="followRedirects" value="false" />
+		<!--是否允许压缩-->
+		<property name="allowCompression" value="true" />
+		<!--最大重试次数，默认0 推荐1-->
+		<property name="maxRetries" value="1" />
+		<!--索引库名称 dbName-->
+		<property name="dbNames" value="young_room" />
+	</bean>
+</beans>

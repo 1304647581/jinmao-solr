@@ -1,8 +1,0 @@
-<div class="content">
-		<div class="title-w">
-			<h3 class="left">权限不足</h3>
-		</div>
-		<div class="table-w table-q" style="background:#dad8d9;text-align:center;">
-		<img src="/style/img/no_permission.jpg"/>
-        </div>
-</div>

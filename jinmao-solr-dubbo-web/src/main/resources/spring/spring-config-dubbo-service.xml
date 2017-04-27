@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	default-autowire="byName">
+
+	<dubbo:application name="jinmao-solr-dubbo-web" />
+	<dubbo:registry address="N/A" />
+	<!-- 客源搜索 -->
+	<dubbo:protocol id="roomrpl" name="dubbo" port="6070" />
+	<!-- ref:要注入的Service实现 -->
+	<dubbo:service interface="com.jinmao.solr.dubbo.room.service.RoomSolrRpcService" 
+					ref="roomSolrRpcService" version="1.0" group="group-solr-room"
+					protocol="roomrpl" timeout="60000" />
+
+				
+</beans>
